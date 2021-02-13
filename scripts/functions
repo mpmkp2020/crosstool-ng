@@ -851,9 +851,11 @@ CT_GetFile() {
     # Do *not* try git trees (ext=/.git), this is handled in a specific
     # wrapper, below
     for ext in ${first_ext} $(CT_DoListTarballExt) ''; do
+        CT_DoLog EXTRA "################Mad info '${ext}'"
         # Try all urls in turn
         for url in "${URLS[@]}"; do
             [ -n "${url}" ] || continue
+            CT_DoLog EXTRA "################ MAd info '${url}, ${file}, ${ext}'"
             CT_DoLog DEBUG "Trying '${url}/${file}${ext}'"
             CT_DoGetFile "${url}/${file}${ext}"
             if [ -f "${CT_TARBALLS_DIR}/${file}${ext}" ]; then
